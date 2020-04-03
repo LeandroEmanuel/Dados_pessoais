@@ -7,4 +7,6 @@
     <string name="edit_weight">Weight</string>
     <string name="edit_height">Height</string>
     <string name="button_send">Send</string>
+    <string name="textview">TextView</string>
+    <string name="dados_pessoais">Dados Pessoais:</string>
 </resources>
