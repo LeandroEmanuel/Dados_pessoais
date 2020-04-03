@@ -25,7 +25,8 @@ public class MostraDados extends AppCompatActivity {
         String beforName = "Name: "+ name;// passar o resultado do campo mais o indicador numa string
         SpannableString ss = new SpannableString(beforName);
         ForegroundColorSpan cBlack = new ForegroundColorSpan(Color.BLACK);
-        ss.setSpan(cBlack,0,5, Spanned.SPAN_INCLUSIVE_INCLUSIVE);/*defenir o intervalo a
+        int x = beforName.indexOf(":",0)+1;//forma para saber o index dos :
+        ss.setSpan(cBlack,0, x, Spanned.SPAN_INCLUSIVE_INCLUSIVE);/*defenir o intervalo a
         alterar a cor na string*/
         textViewName.setText(ss);
 
@@ -33,40 +34,45 @@ public class MostraDados extends AppCompatActivity {
         TextView textViewPhone = findViewById(R.id.textViewPhone);
         String beforPone = "Phone: " + phone;
         SpannableString ss1 = new SpannableString(beforPone);
-        ForegroundColorSpan cBlack1 = new ForegroundColorSpan(Color.BLACK);
-        ss1.setSpan(cBlack1,0,6, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        //ForegroundColorSpan cBlack1 = new ForegroundColorSpan(Color.BLACK);
+        int y = beforPone.indexOf(":",0)+1;
+        ss1.setSpan(cBlack,0,y, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         textViewPhone.setText(ss1);
 
         String email = intent.getStringExtra(MainActivity.EXTRA_EMAIL);
         TextView textViewEmail = findViewById(R.id.textViewEmail);
         String beforEmail = "E-mail: " + email;
         SpannableString ss2 = new SpannableString(beforEmail);
-        ForegroundColorSpan cBlack2 = new ForegroundColorSpan(Color.BLACK);
-        ss2.setSpan(cBlack2,0,7, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        //ForegroundColorSpan cBlack2 = new ForegroundColorSpan(Color.BLACK);
+        int z = beforEmail.indexOf(":",0)+1;
+        ss2.setSpan(cBlack,0, z, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         textViewEmail.setText(ss2);
 
         String age = intent.getStringExtra(MainActivity.EXTRA_AGE);
         TextView textViewAge = findViewById(R.id.textViewAge);
         String beforAge = "Age: " + age;
         SpannableString ss3 = new SpannableString(beforAge);
-        ForegroundColorSpan cBlack3 = new ForegroundColorSpan(Color.BLACK);
-        ss3.setSpan(cBlack2,0,4, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        //ForegroundColorSpan cBlack3 = new ForegroundColorSpan(Color.BLACK);
+        int c = beforAge.indexOf(":",0)+1;
+        ss3.setSpan(cBlack,0,c, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         textViewAge.setText(ss3);
 
         String weight = intent.getStringExtra(MainActivity.EXTRA_WEIGHT);
         TextView textViewWeight = findViewById(R.id.textViewWeight);
         String beforWeight = "Weight: " + weight + " Kg";
         SpannableString ss4 = new SpannableString(beforWeight);
-        ForegroundColorSpan cBlack4 = new ForegroundColorSpan(Color.BLACK);
-        ss4.setSpan(cBlack3,0,7, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        //ForegroundColorSpan cBlack4 = new ForegroundColorSpan(Color.BLACK);
+        int v = beforWeight.indexOf(":",0)+1;
+        ss4.setSpan(cBlack,0, v, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         textViewWeight.setText(ss4);
 
         String height = intent.getStringExtra(MainActivity.EXTRA_HEIGHT);
         TextView textViewHeight = findViewById(R.id.textViewHeight);
         String beforHeight = "Height: " + height + " Meters";
         SpannableString ss5 = new SpannableString(beforHeight);
-        ForegroundColorSpan cBlack5 = new ForegroundColorSpan(Color.BLACK);
-        ss5.setSpan(cBlack5,0,7, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        //ForegroundColorSpan cBlack5 = new ForegroundColorSpan(Color.BLACK);
+        int b = beforHeight.indexOf(":",0)+1;
+        ss5.setSpan(cBlack,0, b, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         textViewHeight.setText(ss5);
         Toast.makeText(this, "Dados Pessoais\n"+ name, Toast.LENGTH_SHORT).show(); // Mensagem informativa
 
