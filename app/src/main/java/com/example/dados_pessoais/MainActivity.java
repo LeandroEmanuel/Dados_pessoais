@@ -25,31 +25,83 @@ public class MainActivity extends AppCompatActivity {
     }
     public void sendData(View view) {
         Intent intent = new Intent(this, MostraDados.class);
+
         EditText editTextName = (EditText) findViewById(R.id.editTextName);
         String name = editTextName.getText().toString();
-        intent.putExtra(EXTRA_NOME, name);
+        boolean tenhoErros = false;
+        if ((name.length() == 0) ){
+            tenhoErros = true;
+            editTextName.requestFocus();
+            editTextName.setError(editTextName.getHint() + "\n" +
+                    "is a required field");
+        }
+        else{
+            intent.putExtra(EXTRA_NOME, name);
+        }
 
         EditText editTextPhone = (EditText) findViewById(R.id.editTextPhone);
         String phone = editTextPhone.getText().toString();
-        intent.putExtra(EXTRA_PHONE, phone);
+        if(phone.length() == 0){
+            tenhoErros = true;
+            editTextPhone.requestFocus();
+            editTextPhone.setError(editTextPhone.getHint() + " \n" +
+                    "is a required field");
+        }
+        else{
+            intent.putExtra(EXTRA_PHONE, phone);
+        }
 
         EditText editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         String email = editTextEmail.getText().toString();
-        intent.putExtra(EXTRA_EMAIL, email);
+        if(email.length() == 0){
+            tenhoErros = true;
+            editTextEmail.requestFocus();
+            editTextEmail.setError(editTextEmail.getHint() + "\n" + "is a required field");
+        }
+        else{
+            intent.putExtra(EXTRA_EMAIL, email);
+        }
 
         EditText editTextAge = (EditText) findViewById(R.id.editTextAge);
         String age = editTextAge.getText().toString();
-        intent.putExtra(EXTRA_AGE, age);
+        if(age.length() == 0){
+            tenhoErros = true;
+            editTextAge.requestFocus();
+            editTextAge.setError(editTextAge.getHint() + "\n" +
+                    "is a required field");
+        }
+        else{
+            intent.putExtra(EXTRA_AGE, age);
+        }
 
         EditText editTextWeight = (EditText) findViewById(R.id.editTextWeight);
         String weight = editTextWeight.getText().toString();
-        intent.putExtra(EXTRA_WEIGHT, weight);
+        if(weight.length() == 0){
+            tenhoErros = true;
+            editTextWeight.requestFocus();
+            editTextWeight.setError(editTextWeight.getHint() + "\n" +
+                    "is a required field");
+        }
+        else{
+            intent.putExtra(EXTRA_WEIGHT, weight);
+        }
 
         EditText editTextHeight = (EditText) findViewById(R.id.editTextHeight);
         String height = editTextHeight.getText().toString();
-        intent.putExtra(EXTRA_HEIGHT, height);
+        if(height.length() == 0){
+            tenhoErros = true;
+            editTextHeight.requestFocus();
+            editTextHeight.setError(editTextHeight.getHint() + "\n" +
+                    "is a required field");
+        }
+        else{
+            intent.putExtra(EXTRA_HEIGHT, height);
+        }
 
-        startActivity(intent);
+        if(tenhoErros == false){
+            startActivity(intent);
+        }
+
 
     }
 }
