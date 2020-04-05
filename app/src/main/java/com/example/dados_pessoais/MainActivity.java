@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.EditText;
 
@@ -50,59 +51,83 @@ public class MainActivity extends AppCompatActivity {
 
         boolean tenhoErros = false;
         if ((name.length() == 0) ){
-            tenhoErros = true;
+            //tenhoErros = true;
             editTextName.requestFocus();
             editTextName.setError(editTextName.getHint() + "\n" +
-                    "is a required field");
+                    "is a required field!");
+        }
+        else if (!name.matches("^([A-Z][a-z]*((\\s)))+[A-Z][a-z]*$")){//https://stackoverflow.com/questions/7362567/java-regex-for-full-name
+            editTextName.setError(editTextName.getHint() + "\n" + "Invalid Name! \n" +
+                    "Put your first and last Name! ");
         }
         /*else{
             intent.putExtra(EXTRA_NOME, name);
         }*/
 
         else if(phone.length() == 0){
-            tenhoErros = true;
+            //tenhoErros = true;
             editTextPhone.requestFocus();
             editTextPhone.setError(editTextPhone.getHint() + " \n" +
-                    "is a required field");
+                    "is a required field! ");
+        }
+        else if(!phone.matches("[0-9]{9}")){// feita por mim so aceita numeros com 9 digitos
+            editTextPhone.setError(editTextPhone.getHint() + "\n" +
+                    "Invalid Phone Number! ");
         }
         /*else{
             intent.putExtra(EXTRA_PHONE, phone);
         }*/
 
-        else if(email.length() == 0/* || !emailValido(email)*/){
-            tenhoErros = true;
+        else if(email.length() == 0 ){
+            //tenhoErros = true;
             editTextEmail.requestFocus();
             editTextEmail.setError(editTextEmail.getHint() + "\n" + "is a required field");
+        }
+        else if(!email.matches("[^@]+@[^\\.]+\\..+")){//https://www.regextester.com/99632
+            editTextEmail.setError(editTextEmail.getHint() + "\n" + "Invalid E-mail! ");
         }
         /*else{
             intent.putExtra(EXTRA_EMAIL, email);
         }*/
 
         else if(age.length() == 0){
-            tenhoErros = true;
+            //tenhoErros = true;
             editTextAge.requestFocus();
             editTextAge.setError(editTextAge.getHint() + "\n" +
-                    "is a required field");
+                    "is a required field! ");
+        }
+
+        else if((Integer.parseInt(age) <= 0) || (Integer.parseInt(age) >= 120)){
+            editTextAge.setError(editTextAge.getHint() + "\n" +
+                    "Invalid Age! ");
         }
         /*else{
             intent.putExtra(EXTRA_AGE, age);
         }*/
 
         else if(weight.length() == 0){
-            tenhoErros = true;
+            //tenhoErros = true;
             editTextWeight.requestFocus();
             editTextWeight.setError(editTextWeight.getHint() + "\n" +
-                    "is a required field");
+                    "is a required field! ");
+        }
+        else if(Float.parseFloat(weight) <= 0 || Float.parseFloat(weight) >600){
+            editTextWeight.setError(editTextWeight.getHint() +"\n" +
+                    "Invalid Weight! ");
         }
         /*else{
             intent.putExtra(EXTRA_WEIGHT, weight);
         }*/
 
         else if(height.length() == 0){
-            tenhoErros = true;
+            //tenhoErros = true;
             editTextHeight.requestFocus();
             editTextHeight.setError(editTextHeight.getHint() + "\n" +
-                    "is a required field");
+                    "is a required field! ");
+        }
+        else if(Float.parseFloat(height) <= 0 || Float.parseFloat(height) > 2.6){
+            editTextHeight.setError(editTextHeight.getHint() + "\n" +
+                    "Invalid Height! \n Try something between 1 and 2.6 meters");
         }
         /*else{
             intent.putExtra(EXTRA_HEIGHT, height);
@@ -121,10 +146,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //--------------------------------- VALIDACOES -------------------------------------------------
-    public static boolean emailValido(String email){
+    /*public static boolean emailValido(String Email){
         final String regex = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
+        Matcher matcher = pattern.matcher(Email);
         return matcher.matches();
-    }
+    }*/
 }
