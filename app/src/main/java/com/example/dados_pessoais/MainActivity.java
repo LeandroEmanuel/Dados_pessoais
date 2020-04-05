@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.method.TextKeyListener;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 import java.util.regex.Matcher;
@@ -49,14 +51,20 @@ public class MainActivity extends AppCompatActivity {
         EditText editTextHeight = (EditText) findViewById(R.id.editTextHeight);
         String height = editTextHeight.getText().toString();
 
-        boolean tenhoErros = false;
+        if ((name.length() != 0) ){
+            int aux=name.indexOf(" ");
+            //todo: for para formatar o nome inteiro quer tenha 2 ou mais nomes
+            name=name.substring(0,1).toUpperCase()+name.substring(1,aux+1)+name.substring(aux+1,aux+2).toUpperCase()+name.substring(aux+2);
+        }
+
+        //boolean tenhoErros = false;
         if ((name.length() == 0) ){
             //tenhoErros = true;
             editTextName.requestFocus();
             editTextName.setError(editTextName.getHint() + "\n" +
                     "is a required field!");
         }
-        else if (!name.matches("^([A-Z][a-z]*((\\s)))+[A-Z][a-z]*$")){//https://stackoverflow.com/questions/7362567/java-regex-for-full-name
+        else if (!name.matches("^([A-z][a-z]*((\\s)))+[A-z][a-z]*$")){//https://stackoverflow.com/questions/7362567/java-regex-for-full-name
             editTextName.setError(editTextName.getHint() + "\n" + "Invalid Name! \n" +
                     "Put your first and last Name! ");
         }
@@ -64,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(EXTRA_NOME, name);
         }*/
 
-        else if(phone.length() == 0){
+        else if(phone.length() == 0 /*&& email.length() == 0 */){
             //tenhoErros = true;
             editTextPhone.requestFocus();
             editTextPhone.setError(editTextPhone.getHint() + " \n" +
                     "is a required field! ");
         }
-        else if(!phone.matches("[0-9]{9}")){// feita por mim so aceita numeros com 9 digitos
+        else if(!phone.matches("[0-9]{9}") /*|| email.length() != 0*/){// feita por mim so aceita numeros com 9 digitos
             editTextPhone.setError(editTextPhone.getHint() + "\n" +
                     "Invalid Phone Number! ");
         }
@@ -78,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(EXTRA_PHONE, phone);
         }*/
 
-        else if(email.length() == 0 ){
+        else if(email.length() == 0 /*&& phone.length() == 0*/){
             //tenhoErros = true;
             editTextEmail.requestFocus();
             editTextEmail.setError(editTextEmail.getHint() + "\n" + "is a required field");
@@ -125,9 +133,9 @@ public class MainActivity extends AppCompatActivity {
             editTextHeight.setError(editTextHeight.getHint() + "\n" +
                     "is a required field! ");
         }
-        else if(Float.parseFloat(height) <= 0 || Float.parseFloat(height) > 2.6){
+        else if(Float.parseFloat(height) <= 0.8 || Float.parseFloat(height) > 2.6){
             editTextHeight.setError(editTextHeight.getHint() + "\n" +
-                    "Invalid Height! \n Try something between 1 and 2.6 meters");
+                    "Invalid Height! \n Try something between 0.8 and 2.6 meters");
         }
         /*else{
             intent.putExtra(EXTRA_HEIGHT, height);
