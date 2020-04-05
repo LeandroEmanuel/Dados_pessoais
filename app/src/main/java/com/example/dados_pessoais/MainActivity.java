@@ -3,10 +3,14 @@ package com.example.dados_pessoais;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +32,22 @@ public class MainActivity extends AppCompatActivity {
 
         EditText editTextName = (EditText) findViewById(R.id.editTextName);
         String name = editTextName.getText().toString();
+
+        EditText editTextPhone = (EditText) findViewById(R.id.editTextPhone);
+        String phone = editTextPhone.getText().toString();
+
+        EditText editTextEmail = (EditText) findViewById(R.id.editTextEmail);
+        String email = editTextEmail.getText().toString();
+
+        EditText editTextAge = (EditText) findViewById(R.id.editTextAge);
+        String age = editTextAge.getText().toString();
+
+        EditText editTextWeight = (EditText) findViewById(R.id.editTextWeight);
+        String weight = editTextWeight.getText().toString();
+
+        EditText editTextHeight = (EditText) findViewById(R.id.editTextHeight);
+        String height = editTextHeight.getText().toString();
+
         boolean tenhoErros = false;
         if ((name.length() == 0) ){
             tenhoErros = true;
@@ -35,73 +55,76 @@ public class MainActivity extends AppCompatActivity {
             editTextName.setError(editTextName.getHint() + "\n" +
                     "is a required field");
         }
-        else{
+        /*else{
             intent.putExtra(EXTRA_NOME, name);
-        }
+        }*/
 
-        EditText editTextPhone = (EditText) findViewById(R.id.editTextPhone);
-        String phone = editTextPhone.getText().toString();
-        if(phone.length() == 0){
+        else if(phone.length() == 0){
             tenhoErros = true;
             editTextPhone.requestFocus();
             editTextPhone.setError(editTextPhone.getHint() + " \n" +
                     "is a required field");
         }
-        else{
+        /*else{
             intent.putExtra(EXTRA_PHONE, phone);
-        }
+        }*/
 
-        EditText editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-        String email = editTextEmail.getText().toString();
-        if(email.length() == 0){
+        else if(email.length() == 0/* || !emailValido(email)*/){
             tenhoErros = true;
             editTextEmail.requestFocus();
             editTextEmail.setError(editTextEmail.getHint() + "\n" + "is a required field");
         }
-        else{
+        /*else{
             intent.putExtra(EXTRA_EMAIL, email);
-        }
+        }*/
 
-        EditText editTextAge = (EditText) findViewById(R.id.editTextAge);
-        String age = editTextAge.getText().toString();
-        if(age.length() == 0){
+        else if(age.length() == 0){
             tenhoErros = true;
             editTextAge.requestFocus();
             editTextAge.setError(editTextAge.getHint() + "\n" +
                     "is a required field");
         }
-        else{
+        /*else{
             intent.putExtra(EXTRA_AGE, age);
-        }
+        }*/
 
-        EditText editTextWeight = (EditText) findViewById(R.id.editTextWeight);
-        String weight = editTextWeight.getText().toString();
-        if(weight.length() == 0){
+        else if(weight.length() == 0){
             tenhoErros = true;
             editTextWeight.requestFocus();
             editTextWeight.setError(editTextWeight.getHint() + "\n" +
                     "is a required field");
         }
-        else{
+        /*else{
             intent.putExtra(EXTRA_WEIGHT, weight);
-        }
+        }*/
 
-        EditText editTextHeight = (EditText) findViewById(R.id.editTextHeight);
-        String height = editTextHeight.getText().toString();
-        if(height.length() == 0){
+        else if(height.length() == 0){
             tenhoErros = true;
             editTextHeight.requestFocus();
             editTextHeight.setError(editTextHeight.getHint() + "\n" +
                     "is a required field");
         }
-        else{
+        /*else{
             intent.putExtra(EXTRA_HEIGHT, height);
-        }
+        }*/
 
-        if(tenhoErros == false){
+        else/*(tenhoErros == false)*/{
+            intent.putExtra(EXTRA_NOME, name);
+            intent.putExtra(EXTRA_PHONE, phone);
+            intent.putExtra(EXTRA_EMAIL, email);
+            intent.putExtra(EXTRA_AGE, age);
+            intent.putExtra(EXTRA_WEIGHT, weight);
+            intent.putExtra(EXTRA_HEIGHT, height);
             startActivity(intent);
         }
 
+    }
 
+    //--------------------------------- VALIDACOES -------------------------------------------------
+    public static boolean emailValido(String email){
+        final String regex = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }
