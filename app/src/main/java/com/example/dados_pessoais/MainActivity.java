@@ -52,9 +52,29 @@ public class MainActivity extends AppCompatActivity {
         String height = editTextHeight.getText().toString();
 
         if ((name.length() != 0) ){
-            int aux=name.indexOf(" ");
-            //todo: for para formatar o nome inteiro quer tenha 2 ou mais nomes
-            name=name.substring(0,1).toUpperCase()+name.substring(1,aux+1)+name.substring(aux+1,aux+2).toUpperCase()+name.substring(aux+2);
+            String aux = "";
+            String aux2 = name;
+            int pos = 0;
+
+            for(int i = 0; i < name.length();i++) {// correr a string caracter a caracter
+
+                if(pos == 0)//if de controlo para maiuscula
+                {
+                    aux = aux + aux2.substring(0, 1).toUpperCase();
+                    aux2=aux2.substring(1);// remover do aux2 a letra introduzida em aux
+                    pos++;
+                }
+                else
+                {
+                    if(i == name.indexOf(" ",i))// descobrir o espaco a partir da posicao i
+                    {
+                        pos=0;
+                    }
+                    aux = aux + aux2.substring(0, 1);
+                    aux2 = aux2.substring(1);
+                }
+            }
+            name = aux;
         }
 
         //boolean tenhoErros = false;
