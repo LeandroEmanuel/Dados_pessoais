@@ -169,6 +169,12 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(EXTRA_WEIGHT, weight);
             intent.putExtra(EXTRA_HEIGHT, height);
             startActivity(intent);
+            editTextName.setText("");
+            editTextPhone.setText("");
+            editTextEmail.setText("");
+            editTextAge.setText("");
+            editTextWeight.setText("");
+            editTextHeight.setText("");
         }
 
     }
