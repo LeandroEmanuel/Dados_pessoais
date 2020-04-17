@@ -50,7 +50,7 @@ public class MostraDados extends AppCompatActivity {
         ss2.setSpan(cBlack,0, z, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
         textViewEmail.setText(ss2);
 
-        String age = intent.getStringExtra(MainActivity.EXTRA_AGE);
+        int age = intent.getIntExtra(MainActivity.EXTRA_AGE, 1);
         TextView textViewAge = findViewById(R.id.textViewAge);
         String beforAge = "Age: " + age;
         SpannableString ss3 = new SpannableString(beforAge);

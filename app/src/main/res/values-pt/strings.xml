@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dados_pessoais</string>
+    <string name="edit_name">Nome</string>
+    <string name="edit_phone">Telefone</string>
+    <string name="edit_email">E-mail</string>
+    <string name="edit_age">Idade</string>
+    <string name="edit_weight">Peso</string>
+    <string name="edit_height">Altura</string>
+    <string name="button_send">Enviar</string>
+    <string name="dados_pessoais">Dados Pessoais:</string>
+    <string name="nome_obrigatorio">Preencha o nome!</string>
+    <string name="nome_invalido">Coloque o seu primeiro e ultimo nome!</string>
+    <string name="telefone_obrigatorio">Preencha o numero</string>
+    <string name="numero_invalido">\"Invalid Phone Number! \"</string>
+    <string name="email_obrigatorio">Preencha o e-mail</string>
+    <string name="email_invalido">E-mail invalido</string>
+    <string name="idade_obrigatorio">Preencha a idade</string>
+    <string name="idade_invalida">Idade invalida</string>
+    <string name="peso_obrigatorio">Preencha o peso</string>
+    <string name="peso_invalido">Peso invalido</string>
+    <string name="altura_obrigatoria">Preencha a altura</string>
+    <string name="altura_invalida">Altura invalida</string>
+</resources>

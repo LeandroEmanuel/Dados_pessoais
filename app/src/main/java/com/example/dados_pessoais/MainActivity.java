@@ -77,85 +77,94 @@ public class MainActivity extends AppCompatActivity {
             name = aux;
         }
 
-        //boolean tenhoErros = false;
         if ((name.length() == 0) ){
-            //tenhoErros = true;
-            editTextName.requestFocus();
             editTextName.setError(editTextName.getHint() + "\n" +
-                    "is a required field!");
+                    getString(R.string.nome_obrigatorio));
+            editTextName.requestFocus();
+            return;
         }
+
         else if (!name.matches("^([A-z][a-z]*((\\s)))+[A-z][a-z]*$")){//https://stackoverflow.com/questions/7362567/java-regex-for-full-name
-            editTextName.setError(editTextName.getHint() + "\n" + "Invalid Name! \n" +
-                    "Put your first and last Name! ");
+            editTextName.setError(editTextName.getHint() + "\n" + getString(R.string.nome_invalido));
+            editTextName.requestFocus();
+            return;
         }
         /*else{
             intent.putExtra(EXTRA_NOME, name);
         }*/
 
-        else if(phone.length() == 0 /*&& email.length() == 0 */){
-            //tenhoErros = true;
-            editTextPhone.requestFocus();
+        if(phone.length() == 0 /*&& email.length() == 0 */){
             editTextPhone.setError(editTextPhone.getHint() + " \n" +
-                    "is a required field! ");
+                    getString(R.string.telefone_obrigatorio));
+            editTextPhone.requestFocus();
+            return;
         }
         else if(!phone.matches("[0-9]{9}") /*|| email.length() != 0*/){// feita por mim so aceita numeros com 9 digitos
             editTextPhone.setError(editTextPhone.getHint() + "\n" +
-                    "Invalid Phone Number! ");
+                    getString(R.string.numero_invalido));
         }
         /*else{
             intent.putExtra(EXTRA_PHONE, phone);
         }*/
 
-        else if(email.length() == 0 /*&& phone.length() == 0*/){
-            //tenhoErros = true;
+        if(email.length() == 0 /*&& phone.length() == 0*/){
+            editTextEmail.setError(editTextEmail.getHint() + "\n" + getString(R.string.email_obrigatorio));
             editTextEmail.requestFocus();
-            editTextEmail.setError(editTextEmail.getHint() + "\n" + "is a required field");
+            return;
         }
         else if(!email.matches("[^@]+@[^\\.]+\\..+")){//https://www.regextester.com/99632
-            editTextEmail.setError(editTextEmail.getHint() + "\n" + "Invalid E-mail! ");
+            editTextEmail.setError(editTextEmail.getHint() + "\n" + getString(R.string.email_invalido));
+            editTextEmail.requestFocus();
+            return;
         }
         /*else{
             intent.putExtra(EXTRA_EMAIL, email);
         }*/
 
-        else if(age.length() == 0){
-            //tenhoErros = true;
-            editTextAge.requestFocus();
+        if(age.length() == 0){
             editTextAge.setError(editTextAge.getHint() + "\n" +
-                    "is a required field! ");
+                    getString(R.string.idade_obrigatorio));
+            editTextAge.requestFocus();
+            return;
         }
 
         else if((Integer.parseInt(age) <= 0) || (Integer.parseInt(age) >= 120)){
             editTextAge.setError(editTextAge.getHint() + "\n" +
-                    "Invalid Age! ");
+                    getString(R.string.idade_invalida));
+            editTextAge.requestFocus();
+            return;
         }
         /*else{
             intent.putExtra(EXTRA_AGE, age);
         }*/
 
-        else if(weight.length() == 0){
-            //tenhoErros = true;
-            editTextWeight.requestFocus();
+        if(weight.length() == 0){
             editTextWeight.setError(editTextWeight.getHint() + "\n" +
-                    "is a required field! ");
+                    getString(R.string.peso_obrigatorio));
+            editTextWeight.requestFocus();
+            return;
         }
         else if(Float.parseFloat(weight) <= 0 || Float.parseFloat(weight) >600){
             editTextWeight.setError(editTextWeight.getHint() +"\n" +
-                    "Invalid Weight! ");
+                    getString(R.string.peso_invalido));
+            editTextWeight.requestFocus();
+            return;
         }
         /*else{
             intent.putExtra(EXTRA_WEIGHT, weight);
         }*/
 
-        else if(height.length() == 0){
-            //tenhoErros = true;
-            editTextHeight.requestFocus();
+        if(height.length() == 0){
             editTextHeight.setError(editTextHeight.getHint() + "\n" +
-                    "is a required field! ");
+                    getString(R.string.altura_obrigatoria));
+            editTextHeight.requestFocus();
+            return;
         }
         else if(Float.parseFloat(height) <= 0.8 || Float.parseFloat(height) > 2.6){
             editTextHeight.setError(editTextHeight.getHint() + "\n" +
-                    "Invalid Height! \n Try something between 0.8 and 2.6 meters");
+                    getString(R.string.altura_invalida));
+            editTextHeight.requestFocus();
+            return;
         }
         /*else{
             intent.putExtra(EXTRA_HEIGHT, height);
